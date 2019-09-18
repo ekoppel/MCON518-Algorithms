@@ -8,7 +8,7 @@ public class SubsetSumAlgorithm {
             if (arr[i] == target)
                 return true;
             if (arr[i] < target)
-                if (doSummation(arr, target, i))
+                if (doSummation(arr, target - arr[i], i))
                     return true;
         }
         return false;
