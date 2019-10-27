@@ -9,7 +9,7 @@ public class CollatzConjecture {
         return goesToOneRecursively(3 * n + 1);
     }
 
-    private static boolean goesToOneIteratively(int n) {
+    private static void goesToOneIteratively(int n) {
         while (n != 1) {
             System.out.print(n + " ");
             if (n % 2 == 0)
@@ -18,7 +18,6 @@ public class CollatzConjecture {
                 n = 3 * n + 1;
         }
         System.out.print(n);
-        return true;
     }
 
     private static int choose(int n, int k){
@@ -33,15 +32,13 @@ public class CollatzConjecture {
         return factorial(n - 1) * n;
     }
 
-
-
     public static void main(String[] args) {
-//        goesToOneRecursively(476);
-//        System.out.println("\n");
-//        for (int i = 2; i < 10000; i++) {
-//            System.out.println();
-//            goesToOneIteratively(i);
-//        }
+        goesToOneRecursively(476);
+        System.out.println("\n");
+        for (int i = 2; i < 10000; i++) {
+            System.out.println();
+            goesToOneIteratively(i);
+        }
         System.out.println(choose(9, 5));
     }
 }
