@@ -65,13 +65,46 @@ public class SortingAlgorithms {
         }
     }
 
+    private static void mergeSort(int[] arr) {
+        int size = arr.length;
+        if (size < 2)
+            return;
+        int midPoint = size / 2;
+        int[] leftarr = new int[midPoint];
+        int[] rightarr = new int[size - midPoint];
+
+        System.arraycopy(arr, 0, leftarr, 0, midPoint);
+        System.arraycopy(arr, midPoint, rightarr, 0, size - midPoint);
+
+        mergeSort(leftarr);
+        mergeSort(rightarr);
+
+        merge(arr, leftarr, rightarr);
+    }
+
+    private static void merge(int[] arr, int[] leftarr, int[] rightarr) {
+        int arrTracker = 0, leftTracker = 0, rightTracker = 0;
+        int leftSize = leftarr.length, rightSize = rightarr.length;
+        while (leftTracker < leftSize && rightTracker < rightSize) {
+            if (leftarr[leftTracker] <= rightarr[rightTracker])
+                arr[arrTracker++] = leftarr[leftTracker++];
+            else
+                arr[arrTracker++] = rightarr[rightTracker++];
+        }
+        if (leftTracker < leftSize)
+            arr[arrTracker++] = leftarr[leftTracker++];
+        if (rightTracker < rightSize)
+            arr[arrTracker++] = rightarr[rightTracker++];
+    }
+
+
     private static void outputArray(int[] arr) {
         for (int n : arr)
             System.out.print(n + " ");
     }
 
     public static void main(String[] args) {
-        int[] arr1, arr2, arr3;
+        int[] arr1, arr2, arr3, arr4;
         arr1 = new int[55];
 
         Random r = new Random();
@@ -86,6 +119,9 @@ public class SortingAlgorithms {
 
         arr3 = new int[55];
         System.arraycopy(arr1, 0, arr3, 0, 55);
+
+        arr4 = new int[55];
+        System.arraycopy(arr1, 0, arr4, 0, 55);
 
         int start = (int) System.nanoTime();
         bubbleSort(arr1);
@@ -109,5 +145,13 @@ public class SortingAlgorithms {
 
         System.out.printf("Insertion sorted in %d ns: \n", end - start);
         outputArray(arr3);
+        System.out.println();
+
+        start = (int) System.nanoTime();
+        mergeSort(arr4);
+        end = (int) System.nanoTime();
+
+        System.out.printf("Merge sorted in %d ns: \n", end - start);
+        outputArray(arr4);
     }
 }
