@@ -51,8 +51,7 @@ public class SortingAlgorithms {
     }
 
     private static void insertionSort(int[] arr) {
-        int size = arr.length;
-        for (int i = 1; i < size; i++) {
+        for (int i = 1; i < arr.length; i++) {
             int j = 0;
             int k = i - j;
             int value = arr[i];

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EfficientJanitorTest {
 
     @Test
-    public void testJanitor(){
+    public void testJanitor() {
         EfficientJanitor janitor = new EfficientJanitor();
         List<Float> weight = new ArrayList<>();
         weight.add(1.92f);
@@ -35,13 +35,16 @@ public class EfficientJanitorTest {
         weight.add(1.28f);
         weight.add(1.15f);
 
-        int trips = janitor.Solution(weight);
+        long start = System.nanoTime();
+        int trips = janitor.solution(weight);
+        long end = System.nanoTime() - start;
+        System.out.println("time of solution 1 : " + end);
 
         assertEquals(9, trips);
     }
 
     @Test
-    public void janitor2(){
+    public void janitor2() {
         EfficientJanitor janitor2 = new EfficientJanitor();
         List<Float> weight = new ArrayList<>();
         weight.add(1.92f);
@@ -68,8 +71,11 @@ public class EfficientJanitorTest {
 
         weight.add(1.28f);
 
+        long start = System.nanoTime();
         int trips = janitor2.solution2(weight);
+        long end = System.nanoTime() - start;
+        System.out.println("time of solution 2 : " + end);
 
-        assertEquals(8, trips);
+        assertEquals(9, trips);
     }
 }
